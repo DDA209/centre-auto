@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "centre-auto-b2bfc": {
+      "hosting": {
+        "centre-auto": [
+          "centre-auto-dda"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "centre-auto-b2bfc"
+  }
+}
