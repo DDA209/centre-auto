@@ -11,7 +11,15 @@ export const environment = {
     authDomain: 'centre-auto-b2bfc.firebaseapp.com',
     messagingSenderId: '413653517097',
   },
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyAT6udfTwZa0-S1nEhQFRIhOe8ll0Atomo',
+    authDomain: 'centre-auto-b2bfc.firebaseapp.com',
+    projectId: 'centre-auto-b2bfc',
+    storageBucket: 'centre-auto-b2bfc.appspot.com',
+    messagingSenderId: '413653517097',
+    appId: '1:413653517097:web:013d04201bd68cd84cad38',
+  },
 };
 
 /*
