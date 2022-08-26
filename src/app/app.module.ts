@@ -14,6 +14,10 @@ import { HomeViewComponent } from './views/home-view/home-view.component';
 import { SigninViewComponent } from './views/signin-view/signin-view.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+// import * as firebase from '@angular/fire/app';
+
+// firebase.initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -32,6 +36,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
