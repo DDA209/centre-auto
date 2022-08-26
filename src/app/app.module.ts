@@ -8,13 +8,24 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+
+import { DashboardViewComponent } from './views/dashboard-view/dashboard-view.component';
+import { HomeViewComponent } from './views/home-view/home-view.component';
+import { SignBaseViewComponent } from './views/sign-base-view/sign-base-view.component';
+import { SigninViewComponent } from './views/signin-view/signin-view.component';
+
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeViewComponent } from './views/home-view/home-view.component';
-import { SigninViewComponent } from './views/signin-view/signin-view.component';
+import { SigninFormComponent } from './components/signin-form/signin-form.component';
+import { SignupFormComponent } from './components/signup-form/signup-form.component';
+
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth/';
+import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
+
+import { AuthService } from './auth.service';
+
 // import * as firebase from '@angular/fire/app';
 
 // firebase.initializeApp(environment.firebaseConfig);
@@ -26,6 +37,10 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     NavbarComponent,
     HomeViewComponent,
     SigninViewComponent,
+    SigninFormComponent,
+    SignupFormComponent,
+    SignBaseViewComponent,
+    DashboardViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +53,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     AngularFirestoreModule,
     AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [AuthService, AngularFireAuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
