@@ -24,11 +24,18 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth/';
 import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 
-import { AuthService } from './auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './services/auth/auth.service';
 
 // import * as firebase from '@angular/fire/app';
+import firebase from 'firebase/compat/app';
+import { BrandEditorViewComponent } from './views/brand/brand-editor-view/brand-editor-view.component';
+import { BrandCreatorViewComponent } from './views/brand/brand-creator-view/brand-creator-view.component';
+import { BrandsViewComponent } from './views/brand/brands-view/brands-view.component';
+import { ModalConfirmDeleteComponent } from './components/modal/modal-confirm-delete/modal-confirm-delete.component';
+import { BrandService } from './services/brand/brand.service';
 
-// firebase.initializeApp(environment.firebaseConfig);
+firebase.initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -41,10 +48,16 @@ import { AuthService } from './auth.service';
     SignupFormComponent,
     SignBaseViewComponent,
     DashboardViewComponent,
+    BrandEditorViewComponent,
+    BrandCreatorViewComponent,
+    BrandsViewComponent,
+    ModalConfirmDeleteComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
@@ -53,7 +66,7 @@ import { AuthService } from './auth.service';
     AngularFirestoreModule,
     AngularFireAuthModule,
   ],
-  providers: [AuthService, AngularFireAuthGuard],
+  providers: [AuthService, AngularFireAuthGuard, BrandService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

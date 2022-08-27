@@ -1,1 +1,35 @@
-<p>signin-form works!</p>
+<form [formGroup]="signinForm" (ngSubmit)="onSubmitSignin()" class="register-form">
+
+  <div *ngIf="errorMsg" class="alert alert-danger">{{errorMsg}}</div>
+
+
+
+  <label>Email</label>
+  <div class="input-group form-group-no-border">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="nc-icon nc-email-85"></i>
+      </span>
+    </div>
+
+    <input type="email" class="form-control" placeholder="Email*" formControlName="email" [(ngModel)]="email">
+  </div>
+
+  <label>Mot de passe</label>
+  <div class="input-group form-group-no-border">
+    <div class="input-group-prepend">
+      <span class="input-group-text">
+        <i class="nc-icon nc-key-25"></i>
+      </span>
+    </div>
+    <input type="password" class="form-control" placeholder="Mot de passe*" formControlName="password"
+      [(ngModel)]="password">
+  </div>
+
+  <div class="d-grid">
+    <button class="btn btn-danger btn-round">Connexion</button>
+  </div>
+</form>
+<div class="forgot">
+  <a routerLink="/signup" class="btn btn-link btn-danger">Pas encore inscrit</a>
+</div>

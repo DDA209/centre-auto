@@ -1,5 +1,5 @@
 export class User {
-  private _id!: number;
+  private _id!: string;
   private _firstname: string;
   private _lastname: string;
   private _email: string;
@@ -16,10 +16,10 @@ export class User {
     this._avatar = password;
   }
 
-  get id(): number {
+  get id(): string {
     return this._id;
   }
-  set id(value: number) {
+  set id(value: string) {
     this._id = value;
   }
   get firstname(): string {

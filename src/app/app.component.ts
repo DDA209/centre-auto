@@ -7,22 +7,11 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
 import { DOCUMENT } from '@angular/common';
 import { Location } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { Subscription } from 'rxjs';
-import {
-  Observable,
-  Subject,
-  asapScheduler,
-  pipe,
-  of,
-  from,
-  interval,
-  merge,
-  fromEvent,
-} from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -44,28 +33,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     var navbar: HTMLElement =
       this.element.nativeElement.children[0].children[0];
-
-    this._router = this.routerEvents
-      .pipe(filter((event: Event) => event instanceof NavigationEnd))
-      .subscribe(() => {
-        if (window.outerWidth > 991) {
-          window.document.children[0].scrollTop = 0;
-        } else {
-          window.document.activeElement!.scrollTop = 0;
-        }
-        this.navbar.sidebarClose();
-      });
-
-    // this._router = this.router.events
-    //   .filter((event: any) => event instanceof NavigationEnd)
-    //   .subscribe((event: NavigationEnd) => {
-    //     if (window.outerWidth > 991) {
-    //       window.document.children[0].scrollTop = 0;
-    //     } else {
-    //       window.document.activeElement!.scrollTop = 0;
-    //     }
-    //     this.navbar.sidebarClose();
-    //   });
 
     this.renderer.listen('window', 'scroll', (event) => {
       const number = window.scrollY;
