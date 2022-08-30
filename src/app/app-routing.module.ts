@@ -14,6 +14,10 @@ import {
 import { BrandsViewComponent } from './views/brand/brands-view/brands-view.component';
 import { BrandEditorViewComponent } from './views/brand/brand-editor-view/brand-editor-view.component';
 import { BrandCreatorViewComponent } from './views/brand/brand-creator-view/brand-creator-view.component';
+import { ModelsViewComponent } from './views/model/models-view/models-view.component';
+import { ModelEditorViewComponent } from './views/model/model-editor-view/model-editor-view.component';
+import { ModelCreatorViewComponent } from './views/model/model-creator-view/model-creator-view.component';
+import { ErrorViewComponent } from './views/error-view/error-view.component';
 
 const redirectLoggedInToDashboard = (): any =>
   redirectLoggedInTo(['dashboard']);
@@ -21,29 +25,64 @@ const redirectUnauthorizedToLogin = (): any =>
   redirectUnauthorizedTo(['signin']);
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeViewComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'signin',
     component: SignBaseViewComponent,
     canActivate: [AngularFireAuthGuard],
-    data: { authGardPipe: redirectLoggedInToDashboard },
+    data: { authGuardPipe: redirectLoggedInToDashboard },
   },
   {
     path: 'signup',
     component: SignBaseViewComponent,
-    // canActivate: [AngularFireAuthGuard],
-    // data: { authGardPipe: redirectLoggedInToDashboard },
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectLoggedInToDashboard },
   },
   {
     path: 'dashboard',
     component: DashboardViewComponent,
-    // canActivate: [AngularFireAuthGuard],
-    // data: { authGardPipe: redirectUnauthorizedToLogin },
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
-  { path: 'brands', component: BrandsViewComponent },
-  { path: 'brand/new', component: BrandCreatorViewComponent },
-  { path: 'brand/edit/:id', component: BrandEditorViewComponent },
+  {
+    path: 'brands',
+    component: BrandsViewComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'brand/new',
+    component: BrandCreatorViewComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'brand/edit/:id',
+    component: BrandEditorViewComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'models',
+    component: ModelsViewComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'model/new',
+    component: ModelCreatorViewComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  {
+    path: 'model/edit/:id',
+    component: ModelEditorViewComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
+  { path: 'error', component: ErrorViewComponent },
+  { path: '**', redirectTo: 'error' },
 ];
 
 @NgModule({

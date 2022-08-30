@@ -32,7 +32,22 @@ export class BrandService {
       });
   }
 
-  getById() {}
+  getById(brandId: string): Promise<any> {
+    return new Promise((res, rej) => {
+      this.afs
+        .collection('brands')
+        .doc(brandId)
+        .get()
+        .pipe(
+          map((data) => {
+            const brand = data.data() as Brand;
+            brand.id = data.id;
+            return brand;
+          })
+        )
+        .subscribe((brand: Brand) => res(brand));
+    });
+  }
 
   add(brand: Brand): Promise<any> {
     return new Promise((res, rej) => {
@@ -44,7 +59,25 @@ export class BrandService {
     });
   }
 
-  edit() {}
+  edit(brand: Brand): Promise<any> {
+    return new Promise((res, rej) => {
+      this.afs
+        .collection('brands')
+        .doc(brand.id)
+        .update({ name: brand.name })
+        .then(res)
+        .catch((err) => rej(err));
+    });
+  }
 
-  delete() {}
+  delete(brandId: string): Promise<any> {
+    return new Promise((rej, res) => {
+      this.afs
+        .collection('brands')
+        .doc(brandId)
+        .delete()
+        .then(() => res('succes'))
+        .catch((err) => rej(err));
+    });
+  }
 }

@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-8 mx-auto text-center">
 
-          <form [formGroup]="newBrandForm" (ngSubmit)="onSubmintBrandForm()" class="mt-5">
+          <form [formGroup]="newBrandForm" (ngSubmit)="onSubmitBrandForm()" class="mt-5">
             <div *ngIf="errorMsg" class="alert alert-danger">{{errorMsg}}</div>
 
             <label>Nom</label>
@@ -19,8 +19,7 @@
               <input type="text" class="form-control" placeHolder="Nouvelle marque*" formControlName="name"
                 [(ngModel)]="brand.name" />
             </div>
-            <button [disabled]="newBrandForm.invalid" class="btn btn-danger btn-round my-4"
-              (click)="onSubmintBrandForm()">Ajouter</button>
+            <button [disabled]="newBrandForm.invalid" class="btn btn-danger btn-round my-4">Ajouter</button>
           </form>
           <div class="forgot mt-3 text-decoration-none"><a routerLink="/brands" class="btn btn-link btn-round">Revenir
               aux marques</a></div>

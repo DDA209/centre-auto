@@ -13,6 +13,13 @@ import { DashboardViewComponent } from './views/dashboard-view/dashboard-view.co
 import { HomeViewComponent } from './views/home-view/home-view.component';
 import { SignBaseViewComponent } from './views/sign-base-view/sign-base-view.component';
 import { SigninViewComponent } from './views/signin-view/signin-view.component';
+import { ErrorViewComponent } from './views/error-view/error-view.component';
+import { ModelsViewComponent } from './views/model/models-view/models-view.component';
+import { ModelEditorViewComponent } from './views/model/model-editor-view/model-editor-view.component';
+import { ModelCreatorViewComponent } from './views/model/model-creator-view/model-creator-view.component';
+import { BrandEditorViewComponent } from './views/brand/brand-editor-view/brand-editor-view.component';
+import { BrandCreatorViewComponent } from './views/brand/brand-creator-view/brand-creator-view.component';
+import { BrandsViewComponent } from './views/brand/brands-view/brands-view.component';
 
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -26,14 +33,13 @@ import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './services/auth/auth.service';
+import { BrandService } from './services/brand/brand.service';
+import { ModelService } from './services/model/model.service';
 
 // import * as firebase from '@angular/fire/app';
 import firebase from 'firebase/compat/app';
-import { BrandEditorViewComponent } from './views/brand/brand-editor-view/brand-editor-view.component';
-import { BrandCreatorViewComponent } from './views/brand/brand-creator-view/brand-creator-view.component';
-import { BrandsViewComponent } from './views/brand/brands-view/brands-view.component';
 import { ModalConfirmDeleteComponent } from './components/modal/modal-confirm-delete/modal-confirm-delete.component';
-import { BrandService } from './services/brand/brand.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 firebase.initializeApp(environment.firebaseConfig);
 
@@ -51,7 +57,11 @@ firebase.initializeApp(environment.firebaseConfig);
     BrandEditorViewComponent,
     BrandCreatorViewComponent,
     BrandsViewComponent,
+    ModelsViewComponent,
+    ModelEditorViewComponent,
+    ModelCreatorViewComponent,
     ModalConfirmDeleteComponent,
+    ErrorViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,8 +75,9 @@ firebase.initializeApp(environment.firebaseConfig);
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    NgbModule,
   ],
-  providers: [AuthService, AngularFireAuthGuard, BrandService],
+  providers: [AuthService, AngularFireAuthGuard, BrandService, ModelService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

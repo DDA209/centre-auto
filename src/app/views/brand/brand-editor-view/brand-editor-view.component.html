@@ -1,1 +1,30 @@
-<p>brand-editor-view works!</p>
+<div class="wrapper">
+  <div class="section">
+    <div class="container text-center">
+      <h4 class="title">Editer un marque</h4>
+      <div class="row">
+        <div class="col-8 mx-auto text-center">
+
+          <form [formGroup]="editBrandForm" (ngSubmit)="onSubmitEditBrandForm()" class="mt-5">
+            <div *ngIf="errorMsg" class="alert alert-danger">{{errorMsg}}</div>
+
+            <label>Nom</label>
+
+            <!-- <div *ngIf="(editBrandForm.controls.name.dirty)">DIRTY</div> -->
+
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="nc-icon nc-alert-circle-i"></i>
+              </span>
+              <input type="text" class="form-control" placeHolder="Nouvelle marque*" formControlName="name"
+                [(ngModel)]="brand.name" />
+            </div>
+            <button [disabled]="editBrandForm.invalid" class="btn btn-danger btn-round my-4">Modifier</button>
+          </form>
+          <div class="forgot mt-3 text-decoration-none"><a routerLink="/brands" class="btn btn-link btn-round">Revenir
+              aux marques</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

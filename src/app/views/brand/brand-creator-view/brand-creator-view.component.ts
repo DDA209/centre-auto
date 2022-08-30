@@ -32,7 +32,7 @@ export class BrandCreatorViewComponent implements OnInit {
     });
   }
 
-  onSubmintBrandForm(): void {
+  onSubmitBrandForm(): void {
     this.errorMsg = '';
     this.brandService
       .add(this.brand)
